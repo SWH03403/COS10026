@@ -9,5 +9,25 @@
 		<title>CWA Help Desk Appointment</title>
 	</head>
 	<body>
+		<h1>CWA Help Desk Appointment</h1>
+		<p>The Help Desk is located in ATC620. Open 10:30 to 19:00 Monday to Friday</p>
+		<p>Check Blackboard for when CWA tutors will be there.</p>
+		<form method="POST">
+			<fieldset>
+				<legend>Student details</legend>
+				<p>
+					<label for="student-id">Student ID</label>
+					<input type="number" name="student-id" required minlength="7" maxlength="10" />
+				</p>
+				<p>
+					<label for="student-first-name">Given Name</label>
+					<input type="text" name="student-first-name" required pattern="[A-Z][a-z]+" />
+					<label for="student-last-name">Family Name</label>
+					<input type="text" name="student-last-name" required pattern="[A-Z][a-z]+" />
+				</p>
+			</fieldset>
+			<input type="submit" value="Register"/>
+			<input type="reset" value="Reset Form"/>
+		</form>
 	</body>
 </html>
