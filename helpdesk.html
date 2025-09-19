@@ -78,8 +78,24 @@
 			</fieldset>
 			<fieldset>
 				<legend>Preferred Date / Time</legend>
-				<p><label for="preferred-date">Date</label><input type="date" name="preferred-date" /></p>
-				<p><label for="preferred-time">Time</label><input type="time" name="preferred-time" /></p>
+				<p>
+					<label for="preferred-date">Date</label>
+					<input
+						type="text"
+						name="preferred-date"
+						placeholder="dd/mm/yyyy"
+						pattern="(\d{2}\/){2}\d{4}"
+					/>
+				</p>
+				<p>
+					<label for="preferred-time">Time</label>
+					<input
+						type="text"
+						name="preferred-time"
+						placeholder="hh:mm"
+						pattern="\d{2}:\d{2}"
+					/>
+				</p>
 			</fieldset>
 			<input type="submit" value="Book"/>
 			<input type="reset" value="Reset Form"/>
