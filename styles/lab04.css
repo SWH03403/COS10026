@@ -5,3 +5,39 @@
  * last_modified: 2025-09-26
  * description: imported by `/lab04.html`
  */
+
+body {
+	padding-left: 10px;
+	border-left: 2px solid blue;
+
+	& > header {
+		& > h1 { color: purple; }
+		& > nav > a {
+			padding: .1em .6em;
+			color: black;
+			border: 3px solid lightgray;
+			text-decoration: none;
+		}
+	}
+
+}
+
+h2 { color: teal; }
+h3 { color: red; }
+
+a {
+	color: black;
+	text-decoration-color: black;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+.special {
+	color: orange;
+	font-weight: bold;
+}
+``
+/* Bullet icon for nested list */
+li > * > li { list-style-type: square; }
