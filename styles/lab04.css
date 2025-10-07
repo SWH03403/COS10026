@@ -6,7 +6,14 @@
  * description: imported by `/lab04.html`
  */
 
-h1 { color: purple; }
+h1 {
+	margin: .5em;
+	padding: .5em;
+	border: 1px solid darkgray;
+	background: lightgray;
+	color: purple;
+	text-align: center;
+}
 h2 { color: teal; }
 
 nav > a {
