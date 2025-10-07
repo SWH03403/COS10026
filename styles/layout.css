@@ -26,9 +26,18 @@ aside {
 	font-style: italic;
 }
 
+article { min-width: 30em; }
+footer {
+	clear: both;
+	border-top: 4px double darkgray;
+
+	p { display: inline-block; width: 33%; }
+	p:nth-child(2) { text-align: center; }
+	p:last-child { text-align: right; }
+}
+
 table { margin: auto; }
 figure { border: 2px solid #ccc; }
-footer { border-top: 4px double darkgray; clear: both; }
 ol, ul, dl { text-align: left; }
 
 #lists { float: left; }
