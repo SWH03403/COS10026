@@ -2,14 +2,9 @@
  * filename: `/styles/lab04.css`
  * author: SWH03403
  * created: 2025-09-26
- * last_modified: 2025-09-26
+ * last_modified: 2025-10-7
  * description: imported by `/lab04.html`
  */
-
-body {
-	padding-left: 10px;
-	border-left: 2px solid blue;
-}
 
 h1 { color: purple; }
 h2 { color: teal; }
