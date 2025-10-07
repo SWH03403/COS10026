@@ -40,6 +40,19 @@ table { margin: auto; }
 figure { border: 2px solid #ccc; }
 ol, ul, dl { text-align: left; }
 
+dl {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+}
+dd { margin: 0; }
+dt, dd { padding: 5px; }
+dt {
+	color: green;
+	font-weight: 600;
+	text-align: right;
+	&::after { content: ":"; }
+}
+
 .column { width: 50%; text-align: center; }
 
 #lists { float: left; }
