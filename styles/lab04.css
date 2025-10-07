@@ -30,8 +30,10 @@ aside {
 	padding: 1em;
 	float: right;
 	width: 30%;
+	background: url("/images/fade.jpg") repeat-x top left;
+	box-shadow: 10px 10px 5px #aaaaaa;
 	border: 4px inset purple;
-	border-radius: 14px
+	border-radius: 14px;
 	font-style: italic;
 }
 
