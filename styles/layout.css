@@ -40,9 +40,9 @@ table { margin: auto; }
 figure { border: 2px solid #ccc; }
 ol, ul, dl { text-align: left; }
 
+.column { width: 50%; text-align: center; }
+
 #lists { float: left; }
 #tables { float: right; margin: auto; }
 #hyperlinks { clear: left; float: left; }
 #images { float: right; }
-
-#lists, #images, #tables, #hyperlinks { width: 50%; text-align: center; }
