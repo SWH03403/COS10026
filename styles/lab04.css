@@ -6,14 +6,7 @@
  * description: imported by `/lab04.html`
  */
 
-h1 {
-	margin: .5em;
-	padding: .5em;
-	border: 1px solid darkgray;
-	background: lightgray;
-	color: purple;
-	text-align: center;
-}
+h1 { color: purple; }
 h2 { color: teal; }
 
 nav > a {
@@ -25,29 +18,5 @@ nav > a {
 a { color: black; text-decoration-color: black; }
 table, th, td { border: 1px solid black; }
 
-aside {
-	margin: 1em;
-	padding: 1em;
-	float: right;
-	width: 30%;
-	background: url("/images/fade.jpg") repeat-x top left;
-	box-shadow: 10px 10px 5px #aaaaaa;
-	border: 4px inset purple;
-	border-radius: 14px;
-	font-style: italic;
-}
-
 .special { color: orange; font-weight: bold; }
 .list-square > li { list-style-type: square; }
-
-table { margin: auto; }
-figure { border: 2px solid #ccc; }
-footer { border-top: 4px double darkgray; clear: both; }
-ol, ul, dl { text-align: left; }
-
-#lists { float: left; }
-#tables { float: right; margin: auto; }
-#hyperlinks { clear: left; float: left; }
-#images { float: right; }
-
-#lists, #images, #tables, #hyperlinks { width: 50%; text-align: center; }

@@ -1,0 +1,39 @@
+/*
+ * filename: `/styles/layout.css`
+ * author: SWH03403
+ * created: 2025-10-07
+ * last_modified: 2025-10-07
+ * description: imported by all pages
+ */
+
+h1 {
+	margin: .5em;
+	padding: .5em;
+	border: 1px solid darkgray;
+	background: lightgray;
+	text-align: center;
+}
+aside {
+	margin: 1em;
+	padding: 1em;
+	float: right;
+	width: 30%;
+
+	background: url("/images/fade.jpg") repeat-x top left;
+	box-shadow: 10px 10px 5px #aaaaaa;
+	border: 4px inset purple;
+	border-radius: 14px;
+	font-style: italic;
+}
+
+table { margin: auto; }
+figure { border: 2px solid #ccc; }
+footer { border-top: 4px double darkgray; clear: both; }
+ol, ul, dl { text-align: left; }
+
+#lists { float: left; }
+#tables { float: right; margin: auto; }
+#hyperlinks { clear: left; float: left; }
+#images { float: right; }
+
+#lists, #images, #tables, #hyperlinks { width: 50%; text-align: center; }
