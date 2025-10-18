@@ -26,7 +26,53 @@
 
 <main>
 <?php
-	print_r($_POST);
+	const SPECIES = [
+		'D' => 'Dwarf',
+		'E' => 'Elf',
+		'H' => 'Hobbit',
+		'M' => 'Human',
+	];
+
+	$errors = [];
+	function print_errors(): bool {
+		global $errors;
+		if (empty($errors)) { return true; }
+
+		$count = count($errors);
+		echo "<p>There are $count validation error(s):</p><ul>";
+		foreach ($errors as $err) { echo "<li>$err!</li>"; }
+		echo "</ul>";
+		return false;
+	}
+	function err(string $msg) {
+		global $errors;
+		array_push($errors, $msg);
+	}
+
+	function check_set(string $field, ?string $pretty = null): bool {
+		$set = isset($_POST[$field]);
+		$pretty = isset($pretty)? $pretty : ucfirst($field);
+		if (!$set) { err("$pretty must be set"); }
+		return $set;
+	}
+	function check_name(string $type) {
+		$field = "{$type}name";
+		$pretty = ucfirst($type);
+		$pretty = "$pretty name";
+
+		if (!check_set($field, $pretty)) { return; }
+		elseif (empty($_POST[$field])) { err("$pretty must not be empty"); }
+		elseif (strlen($_POST[$field]) > 20) { err("$pretty must be no longer than 20 characters"); }
+	}
+
+	check_name('first');
+	check_name('last');
+	if (check_set('age') && !ctype_digit($_POST['age'])) { err('Age must be a number'); }
+	if (check_set('species') && !isset(SPECIES[$_POST['species']])) { err('Unknown species'); }
+
+	if (print_errors()) {
+		echo 'ok';
+	}
 ?>
 </main>
 
