@@ -8,7 +8,7 @@
 <body>
 	<h1>PHP variables, arrays, and operators</h1>
 <?php
-	$marks = array(85, 85, 95);
+	$marks = [85, 85, 95];
 	$marks[1] = 90;
 	$ave = array_sum($marks) / count($marks);
 	$status = $ave >= 50? "PASSED":"FAILED";
