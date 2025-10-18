@@ -32,6 +32,14 @@
 		'H' => 'Hobbit',
 		'M' => 'Human',
 	];
+	const FOOD = [
+		'none' => true,
+
+		'cram' => true,
+		'ent' => true,
+		'lembas' => true,
+		'mushrooms' => true,
+	];
 
 	$errors = [];
 	function print_errors(): bool {
@@ -76,6 +84,9 @@
 
 	if (check_set('partysize', 'Party size') && !ctype_digit($_POST['partysize']))
 	{ err('Party size must be a number'); }
+
+	$food = $_POST['food'] ?? 'none';
+	if (!isset(FOOD[$food])) { err('Unknown preferred food type'); }
 
 	if (print_errors()) {
 		var_dump($_POST);
