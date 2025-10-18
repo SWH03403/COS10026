@@ -41,7 +41,7 @@
 		'mushrooms' => true,
 	];
 	const ITEMS = [
-		'accom' => 'accommodation',
+		'accom' => 'Accommodation',
 		'4day' => 'a 4-day trip',
 		'10day' => 'a 10-day trip',
 	];
@@ -105,10 +105,19 @@
 		$items = array_filter(ITEMS, fn($k) => isset($_POST[$k]), ARRAY_FILTER_USE_KEY);
 		$items = array_map(fn($k) => ITEMS[$k], array_keys($items));
 		$items = join(', ', $items);
-		echo "<p>You are {$_POST['firstname']} {$_POST['lastname']}, a {$_POST['age']}-year-old ".
-			"$species.</p><p>You have booked for: $items.";
+		$food = $food === "none"? 'have no food preference' : "prefer to have " . ucfirst($food);
+		$date = $start->format('j/n/Y');
+
+		echo "<p>You are {$_POST['firstname']} {$_POST['lastname']}, a {$_POST['age']}-year-old ";
+		echo "$species. You have booked for: $items. You {$food}. Your booking day is $date. Your ";
+		echo "party has {$_POST['partysize']} people (including you).</p>";
 	}
 ?>
+	<p>
+		Is this correct?
+		<button>Yes</button>
+		<button>No</button>
+	</p>
 </main>
 
 <footer>
