@@ -39,7 +39,7 @@
 		if (empty($errors)) { return true; }
 
 		$count = count($errors);
-		echo "<p>There are $count validation error(s):</p><ul>";
+		echo "<p>$count validation error(s) encountered:</p><ul>";
 		foreach ($errors as $err) { echo "<li>$err!</li>"; }
 		echo "</ul>";
 		return false;
@@ -70,8 +70,15 @@
 	if (check_set('age') && !ctype_digit($_POST['age'])) { err('Age must be a number'); }
 	if (check_set('species') && !isset(SPECIES[$_POST['species']])) { err('Unknown species'); }
 
+	$booking = ['accom', '4day', '10day'];
+	$no_booking = array_all($booking, fn($b) => !isset($_POST[$b]));
+	if ($no_booking) { err('A booking must be placed for your trip'); }
+
+	if (check_set('partysize', 'Party size') && !ctype_digit($_POST['partysize']))
+	{ err('Party size must be a number'); }
+
 	if (print_errors()) {
-		echo 'ok';
+		var_dump($_POST);
 	}
 ?>
 </main>
