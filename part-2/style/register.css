@@ -1,34 +1,18 @@
-/*style.css
-author [your name]
-date [enter date]
-A style sheet for index-css.html
-*/
+/*
+ * file: register.css
+ * author: SWH03403
+ * date: 2025-10-18
+ * description: A style sheet for `index-css.html`.
+ */
 
-#person {
-	float : left;
-	width: 40%;
-	margin: 10px;
-}
-#trip {
-	float : left;
-	width: 40%;
-	margin: 10px;
-}
-
- 	
-.chkbox {
-	clear: left;
+#person, #trip {
 	float: left;
-	}
-#bottom {
-	clear: both
-	}
-	
-nav,  article {
-	max-width: 60em;
-	}
-article {
- min-width: 20em;
- }
-	 
-		
+	width: 40%;
+	margin: 10px;
+}
+
+.chkbox { clear: left; float: left; }
+#bottom { clear: both; }
+
+nav, article { max-width: 60em; }
+article { min-width: 20em; }
