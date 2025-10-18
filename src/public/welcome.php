@@ -4,8 +4,8 @@
 	$title = 'Welcome page';
 
 	if (!has_user()) { redirect('login'); }
-?>
 
-<?php render_top() ?>
-<p>Welcome, <?php echo $user ?>!</p>
-<?php render_bottom() ?>
+	render_top();
+	echo "<p>Welcome, $user!</p>";
+	render_bottom();
+?>
