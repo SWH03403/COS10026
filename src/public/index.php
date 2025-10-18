@@ -1,1 +1,4 @@
-<?php header('Location: welcome.php'); ?>
+<?php
+	require '../session.php';
+	redirect('welcome');
+?>

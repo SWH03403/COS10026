@@ -1,7 +1,9 @@
 <?php
+	require '../session.php';
 	$root = dirname(__DIR__);
 	$title = 'Login page';
-	require_once '../session.php';
+
+	if (has_user()) { redirect('welcome'); }
 ?>
 
 <?php render_top() ?>
