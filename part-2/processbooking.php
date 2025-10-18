@@ -72,6 +72,12 @@
 		elseif (empty($_POST[$field])) { err("$pretty must not be empty"); }
 		elseif (strlen($_POST[$field]) > 20) { err("$pretty must be no longer than 20 characters"); }
 	}
+	function check_date(string $field, ?string $pretty = null): ?DateTime {
+		$pretty = isset($pretty)? $pretty : ucfirst($field);
+		if (!check_set($field, $pretty)) { return null; }
+		try { return new DateTime($_POST[$field]); }
+		catch (Exception $_) { err("$pretty must be valid"); return null; }
+	}
 
 	check_name('first');
 	check_name('last');
@@ -82,11 +88,13 @@
 	$no_booking = array_all($booking, fn($b) => !isset($_POST[$b]));
 	if ($no_booking) { err('A booking must be placed for your trip'); }
 
-	if (check_set('partysize', 'Party size') && !ctype_digit($_POST['partysize']))
-	{ err('Party size must be a number'); }
-
 	$food = $_POST['food'] ?? 'none';
 	if (!isset(FOOD[$food])) { err('Unknown preferred food type'); }
+
+	$start = check_date('bookday', 'Book day');
+
+	if (check_set('partysize', 'Party size') && !ctype_digit($_POST['partysize']))
+	{ err('Party size must be a number'); }
 
 	if (print_errors()) {
 		var_dump($_POST);
