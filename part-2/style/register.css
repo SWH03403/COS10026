@@ -14,5 +14,5 @@
 .chkbox { clear: left; float: left; }
 #bottom { clear: both; }
 
-nav, article { max-width: 60em; }
-article { min-width: 20em; }
+nav, main { max-width: 60em; }
+main { min-width: 20em; }
