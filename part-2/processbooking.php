@@ -27,10 +27,10 @@
 <main>
 <?php
 	const SPECIES = [
-		'D' => 'Dwarf',
-		'E' => 'Elf',
-		'H' => 'Hobbit',
-		'M' => 'Human',
+		'D' => 'dwarf',
+		'E' => 'elf',
+		'H' => 'hobbit',
+		'M' => 'human',
 	];
 	const FOOD = [
 		'none' => true,
@@ -39,6 +39,11 @@
 		'ent' => true,
 		'lembas' => true,
 		'mushrooms' => true,
+	];
+	const ITEMS = [
+		'accom' => 'accommodation',
+		'4day' => 'a 4-day trip',
+		'10day' => 'a 10-day trip',
 	];
 
 	$errors = [];
@@ -84,9 +89,8 @@
 	if (check_set('age') && !ctype_digit($_POST['age'])) { err('Age must be a number'); }
 	if (check_set('species') && !isset(SPECIES[$_POST['species']])) { err('Unknown species'); }
 
-	$booking = ['accom', '4day', '10day'];
-	$no_booking = array_all($booking, fn($b) => !isset($_POST[$b]));
-	if ($no_booking) { err('A booking must be placed for your trip'); }
+	$no_booking = array_all(ITEMS, fn($_, $k) => !isset($_POST[$k]));
+	if ($no_booking) { err('A booking item must be placed for your trip'); }
 
 	$food = $_POST['food'] ?? 'none';
 	if (!isset(FOOD[$food])) { err('Unknown preferred food type'); }
@@ -97,7 +101,12 @@
 	{ err('Party size must be a number'); }
 
 	if (print_errors()) {
-		var_dump($_POST);
+		$species = SPECIES[$_POST['species']];
+		$items = array_filter(ITEMS, fn($k) => isset($_POST[$k]), ARRAY_FILTER_USE_KEY);
+		$items = array_map(fn($k) => ITEMS[$k], array_keys($items));
+		$items = join(', ', $items);
+		echo "<p>You are {$_POST['firstname']} {$_POST['lastname']}, a {$_POST['age']}-year-old ".
+			"$species.</p><p>You have booked for: $items.";
 	}
 ?>
 </main>
