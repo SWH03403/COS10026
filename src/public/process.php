@@ -5,9 +5,13 @@
 	function clean(string $data): string { return htmlspecialchars(stripslashes(trim($data))); }
 	$user = clean($_POST['username'] ?? '');
 	$pass = clean($_POST['password'] ?? '');
+	$csrf = clean($_POST['token'] ?? '');
 
 	// FIX: Use database for authentication.
-	if ($user === 'admin' && $pass === 'super.secret') {
+	if ($csrf !== $_SESSION['csrf_token']) {
+		$_SESSION['errors'] = ['Invalid CSRF token'];
+		redirect('login');
+	} elseif ($user === 'admin' && $pass === 'super.secret') {
 		$_SESSION['user'] = $user;
 		redirect('welcome');
 	} else {
