@@ -1,3 +1,3 @@
 <header>
-	<h1>Simple car database</h1>
+	<h1>Car Catalog</h1>
 </header>
