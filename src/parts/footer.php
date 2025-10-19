@@ -1,6 +1,6 @@
 <footer>
 	<h6>
-		Generic page footer
-		<span style="font-weight: normal;">Copyright (c) 2025 SWH03403. All Rights Reserved.</span>
+		Welcome to the car factory.
+		<span style="font-weight: normal;">Copyright (c) 2025 SWH03403. All Rights not Reserved.</span>
 	</h6>
 </footer>
