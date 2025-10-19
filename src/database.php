@@ -13,8 +13,25 @@
 		public function __construct() { $this->conn = new SQLite3(self::$url); }
 		public function __destruct() { $this->conn->close(); }
 
-		public function q(string $s): SQLite3Result|false { return $this->conn->query($s); }
-		public function q1(string $s): int { return (int)$this->conn->querySingle($s); }
+		public function query(string $stmt, array $args): array {
+			$query = $this->conn->prepare($stmt);
+			foreach ($args as $idx => $arg) {
+				$type = match (gettype($arg)) {
+					'NULL' => SQLITE3_NULL,
+					'double' => SQLITE3_FLOAT,
+					'integer' => SQLITE3_INTEGER,
+					'string' => SQLITE3_TEXT,
+					default => exit, // FIX: Be descriptive.
+				};
+				if (is_string($arg)) { $arg = SQLite3::escapeString($arg); }
+				$query->bindValue($idx + 1, $arg, $type);
+			}
+			$result = $query->execute();
+			$result->finalize();
+			$rows = [];
+			while ($row = $result->fetchArray(SQLITE3_ASSOC)) { array_push($rows, $row); }
+			return $rows;
+		}
 	}
 
 	Database::init();
