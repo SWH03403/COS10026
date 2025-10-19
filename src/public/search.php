@@ -1,4 +1,8 @@
 <?php
 	require '../session.php';
-	render_page('', ['title' => 'The Car Catalog']);
+	require '../database.php';
+	$db = new Database();
+	$query = $_GET['model'] ?? null;
+	$r = function() { render('search_form'); };
+	render_page($r, ['title' => 'The Car Catalog', 'db' => $db, 'query' => $query]);
 ?>
