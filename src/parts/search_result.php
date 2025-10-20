@@ -7,7 +7,7 @@
 	}
 
 	$db = $opts['db'];
-	$model = SQLite3::escapeString($opts['query']);
+	$model = trim($opts['query']);
 
 	$cars = $db->query("SELECT * FROM car WHERE model LIKE '%' || $1 || '%'", [$model]);
 	if (empty($cars)) { echo "<p>🚫 No matching cars found.</p>"; return; }

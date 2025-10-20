@@ -4,7 +4,8 @@
 	function redirect(string $path) { header("Location: $path.php"); exit; }
 	function has_user(): bool { return isset($_SESSION['user']); }
 
-	function clean(string $data): string { return htmlspecialchars(stripslashes(trim($data))); }
+	function clean(string $data): string {
+		return htmlspecialchars(trim($data), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }
 	function new_csrf_token(): string { return bin2hex(random_bytes(32)); }
 
 	function render(string $part) {
