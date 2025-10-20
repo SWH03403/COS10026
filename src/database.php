@@ -23,7 +23,6 @@
 					'string' => SQLITE3_TEXT,
 					default => exit, // FIX: Be descriptive.
 				};
-				if (is_string($arg)) { $arg = SQLite3::escapeString($arg); }
 				$query->bindValue($idx + 1, $arg, $type);
 			}
 			$result = $query->execute();
