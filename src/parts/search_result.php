@@ -9,7 +9,7 @@
 	$db = $opts['db'];
 	$model = trim($opts['query']);
 
-	$cars = $db->query("SELECT * FROM car WHERE model LIKE '%' || $1 || '%'", [$model]);
+	$cars = $db->query("SELECT * FROM car WHERE model LIKE '%' || ?1 || '%'", [$model]);
 	if (empty($cars)) { echo "<p>🚫 No matching cars found.</p>"; return; }
 	$count = count($cars);
 	echo "<p>Found <b>{$count}</b> matching car(s):</p>";
