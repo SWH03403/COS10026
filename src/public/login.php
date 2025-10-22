@@ -1,24 +1,23 @@
 <?php
-	require '../init.php';
-	if (has_user()) { redirect('profile'); }
+require '../init.php';
+if (has_user()) { redirect('profile'); }
 
-	$errors = [];
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-		$user = get_formfield('username');
-		$pass = get_formfield('password');
-		$csrf = get_formfield('csrf');
+$errors = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	$user = get_formfield('username');
+	$pass = get_formfield('password');
+	$csrf = get_formfield('csrf');
 
-		// FIX: Query database for authentication.
-		if (check_csrf($csrf)) {
-			array_push($errors, 'Invalid CSRF token');
-		} elseif ($user === 'admin' && $pass === 'super.secret') {
-			set_user($user);
-			redirect('profile');
-		} else {
-			array_push($errors, 'Invalid account credential');
-		}
+	// FIX: Query database for authentication.
+	if (check_csrf($csrf)) {
+		array_push($errors, 'Invalid CSRF token');
+	} elseif ($user === 'admin' && $pass === 'super.secret') {
+		set_user($user);
+		redirect('profile');
+	} else {
+		array_push($errors, 'Invalid account credential');
 	}
+}
 
-	new_csrf();
-	render_page(['login_form', 'errors'], ['title' => 'Login page', 'errors' => $errors]);
-?>
+new_csrf();
+render_page(['login_form', 'errors'], ['title' => 'Login', 'errors' => $errors]);
