@@ -1,15 +1,24 @@
 <?php
 	require '../init.php';
-	if (has_user()) { redirect('welcome'); }
+	if (has_user()) { redirect('profile'); }
+
+	$errors = [];
+	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		$user = get_formfield('username');
+		$pass = get_formfield('password');
+		$csrf = get_formfield('csrf');
+
+		// FIX: Query database for authentication.
+		if (check_csrf($csrf)) {
+			array_push($errors, 'Invalid CSRF token');
+		} elseif ($user === 'admin' && $pass === 'super.secret') {
+			set_user($user);
+			redirect('profile');
+		} else {
+			array_push($errors, 'Invalid account credential');
+		}
+	}
 
 	new_csrf();
-	$r = function() {
-		render('login_form');
-		if (!empty($_SESSION['errors'] ?? [])) {
-			$err = $_SESSION['errors'][0];
-			$_SESSION['errors'] = []; // Show error once.
-			echo "<p>Error: $err!</p>";
-		}
-	};
-	render_page($r, ['title' => 'Login page']);
+	render_page(['login_form', 'errors'], ['title' => 'Login page', 'errors' => $errors]);
 ?>
