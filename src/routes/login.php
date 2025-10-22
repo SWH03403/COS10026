@@ -6,10 +6,10 @@ $user = '';
 if (is_post()) {
 	$user = get_formfield('username');
 	$pass = get_formfield('password');
-	$csrf = get_formfield('csrf');
+	$csrf = get_formfield('token');
 
 	// FIX: Query database for authentication.
-	if (check_csrf($csrf)) {
+	if (!check_csrf($csrf)) {
 		array_push($errors, 'Invalid CSRF token');
 	} elseif ($user === 'admin' && $pass === 'super.secret') {
 		set_user($user);
