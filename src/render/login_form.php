@@ -1,4 +1,4 @@
-<form method="post" action="process.php">
+<form method="post">
 	<label for="username">Username</label>
 	<input id="username" type="text" name="username" required>
 	<br>
