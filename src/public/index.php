@@ -1,4 +1,11 @@
 <?php
-$use_session = false;
 require '../init.php';
-redirect('profile');
+
+function _not_found() { http_response_code(404); exit; }
+
+match (get_uri()) {
+	'/', '/profile' => route('profile'),
+	'/login' => route('login'),
+	'/logout' => route('logout'),
+	default => _not_found(),
+};
