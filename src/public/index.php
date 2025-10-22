@@ -1,9 +1,9 @@
 <?php
 require '../init.php';
 
-match (get_uri()) {
-	'/', '/profile' => route('profile'),
-	'/login' => route('login'),
-	'/logout' => route('logout'),
+$uri = get_uri();
+match (true) {
+	$uri == '', => route(DEFAULT_ROUTE),
+	has_route($uri) => route($uri),
 	default => catch_404(),
 };
