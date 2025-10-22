@@ -3,6 +3,7 @@ require '../init.php';
 if (has_user()) { redirect('profile'); }
 
 $errors = [];
+$user = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$user = get_formfield('username');
 	$pass = get_formfield('password');
@@ -20,4 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 new_csrf();
-render_page(['login_form', 'errors'], ['title' => 'Login', 'errors' => $errors]);
+render_page(['login_form', 'errors'], [
+	'title' => 'Login',
+	'username' => $user,
+	'errors' => $errors,
+]);
