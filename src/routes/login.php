@@ -1,5 +1,4 @@
 <?php
-require '../init.php';
 if (has_user()) { redirect('profile'); }
 
 $errors = [];
