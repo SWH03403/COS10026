@@ -1,4 +1,1 @@
-<?php
-	require '../session.php';
-	redirect('welcome');
-?>
+<?php require '../session.php'; redirect('profile'); ?>
