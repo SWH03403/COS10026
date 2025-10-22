@@ -1,18 +1,17 @@
 <?php
-	require '../session.php';
-	if ($_SERVER['REQUEST_METHOD'] !== 'POST') { redirect('welcome'); }
+	require '../init.php';
+	if ($_SERVER['REQUEST_METHOD'] !== 'POST') { redirect('profile'); }
 
-	function clean(string $data): string { return htmlspecialchars(stripslashes(trim($data))); }
 	$user = clean($_POST['username'] ?? '');
 	$pass = clean($_POST['password'] ?? '');
 	$csrf = clean($_POST['token'] ?? '');
 
 	// FIX: Use database for authentication.
-	if ($csrf !== $_SESSION['csrf_token']) {
+	if (check_csrf($csrf)) {
 		$_SESSION['errors'] = ['Invalid CSRF token'];
 		redirect('login');
 	} elseif ($user === 'admin' && $pass === 'super.secret') {
-		$_SESSION['user'] = $user;
+		set_user($user);
 		redirect('welcome');
 	} else {
 		$_SESSION['errors'] = ['Invalid account credential'];

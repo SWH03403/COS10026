@@ -1,10 +1,8 @@
 <?php
-	require '../session.php';
+	require '../init.php';
 	if (has_user()) { redirect('welcome'); }
 
-	$token = new_csrf_token();
-	$_SESSION['csrf_token'] = $token;
-
+	new_csrf();
 	$r = function() {
 		render('login_form');
 		if (!empty($_SESSION['errors'] ?? [])) {
@@ -13,5 +11,5 @@
 			echo "<p>Error: $err!</p>";
 		}
 	};
-	render_page($r, ['title' => 'Login page', 'csrf' => $token]);
+	render_page($r, ['title' => 'Login page']);
 ?>

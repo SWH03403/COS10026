@@ -1,7 +1,15 @@
 <?php
 	session_start();
 
-	function upsert_csrf_token(): string { return bin2hex(random_bytes(32)); }
-	function check_csrf_token(string $token): bool { /*  TODO: */ }
-	function check_user(): bool { return isset($_SESSION['user']); }
+	function new_csrf() { $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); }
+	function get_csrf(): string { return $_SESSION['csrf_token']; }
+	function check_csrf(string $token): bool {
+		$equal = $_SESSION['csrf_token'] === $token;
+		$_SESSION['csrf_token'] = null;
+		return $equal;
+	}
+
+	function get_user(): ?string { return $_SESSION['user'] ?? null; }
+	function has_user(): bool { return !is_null(get_user()); }
+	function set_user(?string $user) { $_SESSION['user'] = $user; }
 ?>

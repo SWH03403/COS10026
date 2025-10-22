@@ -1,1 +1,5 @@
-<?php require '../session.php'; redirect('profile'); ?>
+<?php
+	$use_session = false;
+	require '../init.php';
+	redirect('profile');
+?>

@@ -1,5 +1,5 @@
 <?php
-	require '../session.php';
-	unset($_SESSION['user']);
+	require '../init.php';
+	set_user(null);
 	redirect('login');
 ?>

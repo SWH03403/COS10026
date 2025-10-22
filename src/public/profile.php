@@ -1,5 +1,6 @@
 <?php
 	require '../init.php';
-	if (!has_user()) { redirect('login'); }
-	render_page("<p>Welcome, {$_SESSION['user']}!</p>", ['title' => 'Welcome page']);
+	$user = get_user();
+	if (is_null($user)) { redirect('login'); }
+	render_page("<p>Welcome, $user!</p>", ['title' => 'Welcome page']);
 ?>

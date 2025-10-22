@@ -6,6 +6,7 @@
 	}
 
 	function render_page(string|callable $content, array $opts = []) {
+		global $opts; $opts = $opts;
 		$opts['title'] = $opts['title'] ?? 'Unnamed page';
 
 		render('meta/top');
