@@ -1,4 +1,9 @@
 <?php
-$use_session = false;
 require '../init.php';
-redirect('profile');
+
+$uri = get_uri();
+match (true) {
+	$uri == '', => route(DEFAULT_ROUTE),
+	has_route($uri) => route($uri),
+	default => catch_404(),
+};
