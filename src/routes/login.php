@@ -3,7 +3,7 @@ if (has_user()) { redirect('profile'); }
 
 $errors = [];
 $user = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (is_post()) {
 	$user = get_formfield('username');
 	$pass = get_formfield('password');
 	$csrf = get_formfield('csrf');
