@@ -5,6 +5,6 @@
 	<label for="password">Password</label>
 	<input id="password" type="password" name="password" required>
 	<br>
-	<input type="hidden" name="token" value="<?php echo get_csrf() ?>">
+	<input type="hidden" name="token" value="<?= get_csrf() ?>">
 	<input type="submit" value="Login">
 </form>
