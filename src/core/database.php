@@ -1,4 +1,6 @@
 <?php
+const MIGRATIONS_TABLE = '__migrations';
+
 class Database {
 	public function __construct(
 		private SQLite3 $conn = new SQLite3(DATABASE_URL),
@@ -24,3 +26,32 @@ class Database {
 		return $rows;
 	}
 }
+
+$get_migration = function(int $idx) {
+	$base = str_pad("$idx", 4, "0", STR_PAD_LEFT);
+	return MIGRATIONS_DIR . "/$base.sql";
+};
+
+$db = new Database();
+$db->query('CREATE TABLE IF NOT EXISTS ' . MIGRATIONS_TABLE . '(
+	idx INTEGER PRIMARY KEY
+) WITHOUT ROWID;');
+$migrations = $db->query('SELECT * FROM ' . MIGRATIONS_TABLE);
+$indexed = [];
+foreach ($migrations as $row) { $indexed[$row['idx']] = true; }
+
+foreach (range(0, 9999) as $idx) {
+	$file = $get_migration($idx);
+	if (!is_readable($file)) { break; }
+	if (isset($indexed[$idx])) { continue; }
+	$data = file_get_contents($file);
+	$db->query($data);
+	$db->query('INSERT INTO ' . MIGRATIONS_TABLE . 'VALUES (?1)', [$idx]);
+}
+
+unset($data);
+unset($db);
+unset($file);
+unset($get_migration);
+unset($indexed);
+unset($migrations);
