@@ -1,3 +1,3 @@
 <?php
-function get_formfield(string $k): string { return clean($_POST[$k] ?? ''); }
-function get_parameter(string $k): string { return clean($_GET[$k]  ?? ''); }
+function from_form(string $k): string { return trim($_POST[$k] ?? ''); }
+function from_query(string $k): string { return trim($_GET[$k] ?? ''); }
