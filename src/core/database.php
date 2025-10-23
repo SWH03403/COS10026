@@ -45,8 +45,12 @@ foreach (range(0, 9999) as $idx) {
 	if (!is_readable($file)) { break; }
 	if (isset($indexed[$idx])) { continue; }
 	$data = file_get_contents($file);
-	$db->query($data);
-	$db->query('INSERT INTO ' . MIGRATIONS_TABLE . 'VALUES (?1)', [$idx]);
+	foreach (explode(';', $data) as $stmt) {
+		$stmt = trim($stmt);
+		if (empty($stmt)) { continue; }
+		$db->query("$stmt;");
+	}
+	$db->query('INSERT INTO ' . MIGRATIONS_TABLE . ' VALUES (?)', [$idx]);
 }
 
 unset($data);
