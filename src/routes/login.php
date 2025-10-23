@@ -4,24 +4,26 @@ if (has_user()) { redirect('profile'); }
 $errors = [];
 $user = '';
 if (is_post()) {
-	$user = get_formfield('username');
-	$pass = get_formfield('password');
-	$csrf = get_formfield('token');
+	$user = from_form('username');
+	$pass = from_form('password');
+	$csrf = from_form('token');
 
-	// FIX: Query database for authentication.
-	if (!check_csrf($csrf)) {
-		array_push($errors, 'Invalid CSRF token');
-	} elseif ($user === 'admin' && $pass === 'super.secret') {
-		set_user($user);
-		redirect('profile');
-	} else {
-		array_push($errors, 'Invalid account credential');
-	}
+	if (!check_csrf($csrf)) { array_push($errors, 'Invalid CSRF token'); }
+	if (strlen($user) > 50) { array_push($errors, 'Username is too long'); }
+	if (strlen($pass) > 99) { array_push($errors, 'Password is too long'); } // FIX: Remove if hashed.
+	if (!empty($errors)) { goto end_post; }
+
+	$db = new Database();
+	$rows = $db->query('SELECT password FROM user WHERE name = ?', [$user]);
+	$valid = !empty($rows) && $pass === $rows[0]['password'];
+	if ($valid) { set_user($user); redirect('profile'); }
+	array_push($errors, 'Invalid account credential');
 }
+end_post:
 
 new_csrf();
 render_page(['login_form', 'errors'], [
 	'title' => 'Login',
-	'username' => $user,
+	'username' => clean($user),
 	'errors' => $errors,
 ]);
