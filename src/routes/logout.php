@@ -1,3 +1,3 @@
 <?php
-set_user(null);
+reset_state();
 redirect('login');

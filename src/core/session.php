@@ -12,3 +12,4 @@ function check_csrf(string $token): bool {
 function get_user(): ?string { return $_SESSION['user'] ?? null; }
 function has_user(): bool { return !is_null(get_user()); }
 function set_user(?string $user) { $_SESSION['user'] = $user; }
+function reset_state() { set_user(null); session_unset(); session_reset(); }
