@@ -1,5 +1,5 @@
 <?php
-const DEFAULT_ROUTE = 'profile';
+const DEFAULT_ROUTE = 'welcome';
 
 function get_uri(): string { return ltrim($_SERVER['REQUEST_URI'], '/'); }
 function get_method(): string { return $_SERVER['REQUEST_METHOD']; }

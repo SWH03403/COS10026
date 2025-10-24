@@ -1,4 +1,4 @@
 <?php
 $user = get_user();
 if (is_null($user)) { redirect('login'); }
-render_page("<p>Welcome, $user!</p>", ['title' => 'Profile']);
+render_page("<p>Welcome, $user!</p>", ['title' => 'Welcome']);
