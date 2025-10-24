@@ -1,5 +1,5 @@
 <?php
-if (has_user()) { redirect('profile'); }
+if (has_user()) { redirect(DEFAULT_ROUTE); }
 
 $errors = [];
 $user = '';
@@ -16,7 +16,7 @@ if (is_post()) {
 	$db = new Database();
 	$rows = $db->query('SELECT password FROM user WHERE name = ?', [$user]);
 	$valid = !empty($rows) && $pass === $rows[0]['password'];
-	if ($valid) { set_user($user); redirect('profile'); }
+	if ($valid) { set_user($user); redirect(DEFAULT_ROUTE); }
 	array_push($errors, 'Invalid account credential');
 }
 end_post:
