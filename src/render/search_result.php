@@ -6,8 +6,8 @@ function render_row(array $cells, bool $header = false) {
 	echo "</tr>";
 }
 
-$db = $opts['db'];
-$model = trim($opts['query']);
+$db = new Database();
+$model = from_query('model');
 
 $cars = $db->query("SELECT * FROM car WHERE model LIKE '%' || ?1 || '%'", [$model]);
 if (empty($cars)) { echo "<p>🚫 No matching cars found.</p>"; return; }
