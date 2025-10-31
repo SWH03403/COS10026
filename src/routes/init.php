@@ -1,7 +1,7 @@
 <?php
 const DEFAULT_ROUTE = 'profile';
 
-function get_uri(): string { return ltrim($_SERVER['REQUEST_URI'], '/'); }
+function get_uri(): string { return ltrim(trim(strtok($_SERVER['REQUEST_URI'], '?')), '/'); }
 function get_method(): string { return $_SERVER['REQUEST_METHOD']; }
 function is_post(): bool { return get_method() == 'POST'; }
 
