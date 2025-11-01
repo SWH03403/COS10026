@@ -21,6 +21,7 @@ function process_form(): ?string {
 
 	$email = from_form('email');
 	if (!empty($email)) {
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { return 'Invalid email'; }
 		$db->query('UPDATE user SET email = ? WHERE name = ?', [$email, $user]);
 	}
 
