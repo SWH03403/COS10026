@@ -11,7 +11,10 @@ function check_csrf(string $token): bool {
 
 function get_user(): ?string { return $_SESSION['user'] ?? null; }
 function has_user(): bool { return !is_null(get_user()); }
-function set_user(?string $user) { $_SESSION['user'] = $user; }
+function set_user(?string $user) {
+	session_regenerate_id(true);
+	$_SESSION['user'] = $user;
+}
 
 // https://www.php.net/manual/en/function.session-unset.php#107089
 function reset_state() {
