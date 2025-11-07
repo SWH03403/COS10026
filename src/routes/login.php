@@ -26,4 +26,5 @@ render_page(['login_form', 'errors'], [
 	'title' => 'Login',
 	'username' => clean($user),
 	'errors' => $errors,
+	'nav' => '<a href="/signup">Sign up</a>',
 ]);
