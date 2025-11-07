@@ -24,6 +24,7 @@ if (is_post()) {
 }
 end_post:
 
+new_csrf();
 render_page(['signup_form', 'errors'], [
 	'title' => 'Sign Up',
 	'username' => clean($user),
