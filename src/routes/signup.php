@@ -3,6 +3,7 @@ if (has_user()) { redirect(DEFAULT_ROUTE); }
 
 $errors = [];
 $user = '';
+$email = '';
 if (is_post()) {
 	$user = from_form('username');
 	$email = from_form('email');
@@ -28,6 +29,7 @@ new_csrf();
 render_page(['signup_form', 'errors'], [
 	'title' => 'Sign Up',
 	'username' => clean($user),
+	'email' => clean($email),
 	'errors' => $errors,
 	'nav' => '<a href="/login">Login</a>',
 ]);

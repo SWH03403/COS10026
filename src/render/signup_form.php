@@ -3,7 +3,7 @@
 	<input id="username" type="text" name="username" value="<?= $opts['username'] ?>" required>
 	<br>
 	<label for="email">Email</label>
-	<input id="email" type="text" name="email" required>
+	<input id="email" type="text" name="email" value="<?= $opts['email'] ?>" required>
 	<br>
 	<label for="password">Password</label>
 	<input id="password" type="password" name="password" required>
