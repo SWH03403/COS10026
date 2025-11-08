@@ -13,4 +13,5 @@
 	<br>
 	<input type="hidden" name="token" value="<?= get_csrf() ?>">
 	<input type="submit" value="Sign Up">
+	<a href="/login">or Login</a>
 </form>

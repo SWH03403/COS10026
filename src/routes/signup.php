@@ -31,5 +31,4 @@ render_page(['signup_form', 'errors'], [
 	'username' => clean($user),
 	'email' => clean($email),
 	'errors' => $errors,
-	'nav' => '<a href="/login">Login</a>',
 ]);
